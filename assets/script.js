@@ -7,7 +7,7 @@ let searchTerm = {
 
 let searchResults = []
 
-$(root).append(`<p>howdy yall</p>`)
+$(root).append(`<p>Lets find some books</p>`)
 
 $('.author-search').keyup(
     function (){
