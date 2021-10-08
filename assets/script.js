@@ -5,6 +5,9 @@ let searchTerm = {
     author: ""
 }
 
+let previousSearches = JSON.parse(localStorage.getItem('bookSearches')) || []
+console.log(previousSearches)
+
 let searchResults = []
 
 $(root).append(`<p>Lets find some books</p>`)
@@ -33,6 +36,9 @@ $('.author-search').keyup(
         $(root).empty()
         searchBooks(searchTerm)
         console.log(searchResults)
+        const newHistory = [...previousSearches, searchTerm]
+        console.log(newHistory)
+        localStorage.setItem("bookSearches", JSON.stringify(newHistory))
 
     }
 )
