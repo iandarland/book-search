@@ -31,10 +31,28 @@ $('.author-search').keyup(
 
     $(document).on("click", ".add-to-list",
         function(){
-            readingList.push(this.value)
-            localStorage.setItem("readingList", JSON.stringify(readingList))
-            console.log(readingList)
-        }
+            const book = this.value
+                if(readingList.includes(book)){
+                    $(".navbar").append(`
+                    <div class="alert alert-warning alert-dismissible fade show alert-fixed" role="alert">
+                        <strong>Holy guacamole!</strong> This title is already in your reading list!
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>`)
+                }else{
+                    readingList.push(book)
+                    localStorage.setItem("readingList", JSON.stringify(readingList))
+                    $(".navbar").append(`
+                        <div class="alert alert-success alert-dismissible fade show alert-fixed" role="alert">
+                        <strong>Holy guacamole!</strong> You should check in on some of those fields below.
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>`)
+                
+        //         setTimeout(() =>{
+        //             var alertNode = document.querySelector('.alert')
+        //             var alert = bootstrap.Alert.getInstance(alertNode)
+        //             alert.close()}, 1000)
+        // }
+    }}
     )
     
     $('.run-search').click(
