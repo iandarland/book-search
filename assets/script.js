@@ -6,7 +6,7 @@ let searchTerm = {
 }
 
 let previousSearches = JSON.parse(localStorage.getItem('bookSearches')) || []
-console.log(previousSearches)
+let readingList = JSON.parse(localStorage.getItem('readingList')) || []
 
 let searchResults = []
 
@@ -27,6 +27,14 @@ $('.author-search').keyup(
             searchTerm = {...searchTerm, keyword: keywordEnter}
             console.log(searchTerm)
     }
+    )
+
+    $(document).on("click", ".add-to-list",
+        function(){
+            readingList.push(this.value)
+            localStorage.setItem("readingList", JSON.stringify(readingList))
+            console.log(readingList)
+        }
     )
     
     $('.run-search').click(
@@ -62,6 +70,9 @@ const searchBooks = (data) =>{
                             <h5 class="card-title">${item.volumeInfo.title}</h5>
                             <h6 class="card-subtitle mb-2 text-muted">${item.volumeInfo.authors[0]}</h6>
                             <p>
+                            <button class="btn btn-primary add-to-list" type="button" role="button" value="${item.id}">
+                                add to readinglist
+                            </button>
                             <a class="btn btn-primary" href="${item.volumeInfo.infoLink}" role="button">
                                 Purchase
                             </a>
