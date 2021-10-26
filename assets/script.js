@@ -26,7 +26,20 @@ $('.author-search').keyup(
             searchTerm = {...searchTerm, keyword: keywordEnter}
     }
     )
+    
+    $('.run-search').click(
+        function (event){
+        event.preventDefault()
+        $(root).append(`<p>${searchTerm}</p>`)
+        $(root).empty()
+        searchBooks(searchTerm)
+        console.log(searchResults)
+        const newHistory = [...previousSearches, searchTerm]
+        console.log(newHistory)
+        localStorage.setItem("bookSearches", JSON.stringify(newHistory))
 
+    }
+)
     $(document).on("click", ".add-to-list",
         function(){
             const book = this.value
@@ -66,24 +79,17 @@ $('.author-search').keyup(
             localStorage.setItem("readingList", JSON.stringify(filteredAry))
         })
     
-    $('.run-search').click(
-        function (event){
-        event.preventDefault()
-        $(root).append(`<p>${searchTerm}</p>`)
-        $(root).empty()
-        searchBooks(searchTerm)
-        console.log(searchResults)
-        const newHistory = [...previousSearches, searchTerm]
-        console.log(newHistory)
-        localStorage.setItem("bookSearches", JSON.stringify(newHistory))
-
-    }
-)
     $('.reading-list').click(
         async function(event){
             event.preventDefault()
             $('.reading-list').blur()
-            renderReadingList(readingList)
+            $(root).empty()
+            if(!readingList.length){
+                $(root).append(`
+                <h1>Oops! Nothing in your reading list yet!</h1>`)
+            }else{
+                renderReadingList(readingList)
+            }
         }
     )
 
