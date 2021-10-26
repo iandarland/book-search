@@ -33,9 +33,13 @@ $('.author-search').keyup(
                 if(readingList.includes(book)){
                     $(".navbar").append(`
                     <div class="alert alert-warning alert-dismissible fade show alert-fixed" role="alert">
-                        <strong>Holy guacamole!</strong> This title is already in your reading list!
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>`)
+                    <strong>Holy guacamole!</strong> You should check in on some of those fields below.
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>`)
+                setTimeout(() =>{
+                    const fin = () => $(".alert").remove()
+                    $(".alert").fadeOut(400, fin)
+                }, 1000)
                 }else{
                     readingList.push(book)
                     localStorage.setItem("readingList", JSON.stringify(readingList))
@@ -45,11 +49,11 @@ $('.author-search').keyup(
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>`)
                 
-        //         setTimeout(() =>{
-        //             var alertNode = document.querySelector('.alert')
-        //             var alert = bootstrap.Alert.getInstance(alertNode)
-        //             alert.close()}, 1000)
-        // }
+                setTimeout(() =>{
+                    const fin = () => $(".alert").remove()
+                    $(".alert").fadeOut(400, fin)
+                }, 1000)
+
     }}
     )
 
