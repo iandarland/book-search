@@ -10,6 +10,10 @@ let readingList = JSON.parse(localStorage.getItem('readingList')) || []
 
 let searchResults = []
 
+if(!readingList.length){
+    $(".reading-list").attr('disabled','disabled')
+}
+
 $(root).append(`<p>Lets find some books</p>`)
 
 $('.author-search').keyup(
@@ -73,10 +77,10 @@ $('.author-search').keyup(
     $(document).on('click', '.remove-from-list',
         function(event){
             event.preventDefault()
-            console.log(this.value)
             readingList = readingList.filter(e => e !== this.value)
+            console.log(readingList)
             renderReadingList(readingList)
-            localStorage.setItem("readingList", JSON.stringify(filteredAry))
+            localStorage.setItem("readingList", JSON.stringify(readingList))
         })
     
     $('.reading-list').click(
@@ -89,6 +93,9 @@ $('.author-search').keyup(
                 <h1>Oops! Nothing in your reading list yet!</h1>`)
             }else{
                 renderReadingList(readingList)
+            }
+            if($('.reading-list').is('[disabled=disabled]')){
+                $('.reading-list').prop("disabled", false)
             }
         }
     )
