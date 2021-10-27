@@ -95,7 +95,7 @@ $('.author-search').keyup(
                 renderReadingList(readingList)
             }
             if($('.reading-list').is('[disabled=disabled]')){
-                $('.reading-list').prop("disabled", false)
+                $('.reading-list').attr("disabled", false)
             }
         }
     )
