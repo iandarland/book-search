@@ -10,10 +10,6 @@ let readingList = JSON.parse(localStorage.getItem('readingList')) || []
 
 let searchResults = []
 
-if(!readingList.length){
-    $(".reading-list").attr('disabled','disabled')
-}
-
 $(root).append(`<p>Lets find some books</p>`)
 
 $('.author-search').keyup(
@@ -93,9 +89,6 @@ $('.author-search').keyup(
                 <h1>Oops! Nothing in your reading list yet!</h1>`)
             }else{
                 renderReadingList(readingList)
-            }
-            if($('.reading-list').is('[disabled=disabled]')){
-                $('.reading-list').attr("disabled", false)
             }
         }
     )
